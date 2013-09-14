@@ -27,11 +27,11 @@ import java.sql.Statement;
 public class MainController {
     private static Logger logger = Logger.getLogger(MainController.class);
 
-    @Resource(name = "connectionPool")
+    @Resource(name = "connectionFactory")
     private ConnectionFactory connectionFactory;
 
     // Addition
-    @RequestMapping( method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String printAddition(ModelMap m) {
         String message = "";
         Connection connection = null;

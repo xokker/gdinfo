@@ -12,7 +12,7 @@ import javax.sql.DataSource;
  * Date: 9/14/13
  * Time: 6:22 PM
  */
-@Component(value = "connectionPool")
+@Component(value = "connectionFactory")
 public class ConnectionPool extends DataSourceConnectionFactory {
     public ConnectionPool() {
         super(setupDataSource());
