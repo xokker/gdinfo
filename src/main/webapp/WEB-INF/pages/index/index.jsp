@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -69,12 +71,14 @@
 
             <div class="row">
                 <div class="col-md-2">
-                    <img src="http://www.duma.gov.ru/upload/iblock/28b/28b3374efb18ddc91c72373265e2f001.jpg" class="img-thumbnail">
+                    <!-- <img src="http://www.duma.gov.ru/upload/iblock/28b/28b3374efb18ddc91c72373265e2f001.jpg" class="img-thumbnail"> -->
+                    <img src="${deputy.bigPhotoURL}" class="img-thumbnail">
                 </div>
 
                 <div class="col-md-10">
                     <div class="information">
-                        <h1>Иванов Иван Иванович</h1>
+                        <!--<h1>Иванов Иван Иванович</h1> -->
+                        <h1>${deputy.lastName} ${deputy.firstName} ${deputy.middleName}</h1>
                         <p>Дата родения:<span class="birthday">1 апреля 2000 г.</span></p>
                         <p>Стаж в думе:<span class="experience">10 лет</span></p>
                         <p>
