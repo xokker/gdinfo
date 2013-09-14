@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +74,6 @@
             <a href="<c:url value="/gdinfo/hotornot">
             <c:param name="first" value="${leftDeputy.id}" />
             <c:param name="second" value="${rightDeputy.id}" />
-            <c:param name="isWidget" value="true" />
             <c:param name="result" value="left" />
             </c:url>"><img src="${leftDeputy.bigPhotoURL}" class="img-thumbnail"></a>
             <a href="#" class="title">${leftDeputy.lastName}</a>
@@ -85,7 +85,6 @@
             <a href="<c:url value="/gdinfo/hotornot">
             <c:param name="first" value="${leftDeputy.id}" />
             <c:param name="second" value="${rightDeputy.id}" />
-            <c:param name="isWidget" value="true" />
             <c:param name="result" value="right" />
             </c:url>"><img src="${rightDeputy.bigPhotoURL}" class="img-thumbnail"></a>
             <a href="#" class="title">${rightDeputy.lastName}</a>

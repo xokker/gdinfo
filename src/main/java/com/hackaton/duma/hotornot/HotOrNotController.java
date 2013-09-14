@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.WebRequest;
 
 import javax.annotation.Resource;
 import java.sql.Connection;
@@ -37,8 +36,6 @@ public class HotOrNotController {
                         "and d1.deputy_id != ? and d1.deputy_id != ? " +
                         "and d2.deputy_id != ? and d2.deputy_id != ? " +
                     "order by random() limit 1";
-
-    private static final String PICTURE_URL = "http://www.duma.gov.ru";
 
     @RequestMapping(method = RequestMethod.GET)
     public String hotOrNotPOST(Model model,
@@ -75,7 +72,7 @@ public class HotOrNotController {
                 try {
                     connection = connectionFactory.createConnection();
                     PreparedStatement psPlus = connection.prepareStatement("update deputy set positive_voices = positive_voices + 1 where deputy_id = ?");
-                    PreparedStatement psMinus = connection.prepareStatement("update deputy set positive_voices = negative_voices + 1 where deputy_id = ?");
+                    PreparedStatement psMinus = connection.prepareStatement("update deputy set negative_voices = negative_voices + 1 where deputy_id = ?");
                     if (result.equals("left")) {
                         psPlus.setInt(1, first);
                         psMinus.setInt(1, second);
