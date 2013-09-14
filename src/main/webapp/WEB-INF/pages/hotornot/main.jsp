@@ -71,7 +71,7 @@
 <div class="container">
     <div class="choise">
         <div class="deputy-block">
-            <a href="<c:url value="/gdinfo/hotornot">
+            <a href="<c:url value="/hotornot">
             <c:param name="first" value="${leftDeputy.id}" />
             <c:param name="second" value="${rightDeputy.id}" />
             <c:param name="result" value="left" />
@@ -82,7 +82,7 @@
             <span class="label label-primary">vs</span>
         </div>
         <div class="deputy-block">
-            <a href="<c:url value="/gdinfo/hotornot">
+            <a href="<c:url value="/hotornot">
             <c:param name="first" value="${leftDeputy.id}" />
             <c:param name="second" value="${rightDeputy.id}" />
             <c:param name="result" value="right" />
@@ -103,11 +103,13 @@
             </thead>
 
             <tbody>
-            <tr>
-                <td><a href="">Жириновский</a></td>
-                <td><span class="label label-success">15</span></td>
-                <td><span class="label label-warning">15</span></td>
-            </tr>
+            <c:forEach var="dep" items="${rating}">
+                <tr>
+                    <td><a href="">${dep.firstName} ${dep.lastName}</a></td>
+                    <td><span class="label label-success"><c:out value="${dep.positiveVoices}"/></span></td>
+                    <td><span class="label label-warning"><c:out value="${dep.negativeVoices}"/></span></td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>

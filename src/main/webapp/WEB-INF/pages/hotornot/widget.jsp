@@ -44,7 +44,7 @@
     </style>
 </head>
 <body>
-<a href="<c:url value="/gdinfo/hotornot">
+<a href="<c:url value="/hotornot">
     <c:param name="first" value="${leftDeputy.id}" />
     <c:param name="second" value="${rightDeputy.id}" />
     <c:param name="isWidget" value="true" />
@@ -53,7 +53,7 @@
     <img src="${leftDeputy.bigPhotoURL}">
 </a>
 
-<a href="<c:url value="/gdinfo/hotornot">
+<a href="<c:url value="/hotornot">
     <c:param name="first" value="${leftDeputy.id}" />
     <c:param name="second" value="${rightDeputy.id}" />
     <c:param name="isWidget" value="true" />

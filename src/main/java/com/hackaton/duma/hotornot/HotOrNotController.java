@@ -1,5 +1,6 @@
 package com.hackaton.duma.hotornot;
 
+import com.hackaton.duma.dao.DeputyDAO;
 import com.hackaton.duma.model.Deputy;
 import org.apache.commons.dbcp.ConnectionFactory;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -28,6 +30,9 @@ public class HotOrNotController {
     @Resource(name = "connectionFactory")
     private ConnectionFactory connectionFactory;
 
+    @Resource(name = "deputyDAO")
+    private DeputyDAO deputyDAO;
+
     private static final String SELECT_DEPUTY =
             "select d1.big_photo_url, d1.first_name, d1.last_name, d1.deputy_id, " +
                     "d2.big_photo_url, d2.first_name, d2.last_name, d2.deputy_id " +
@@ -36,6 +41,20 @@ public class HotOrNotController {
                         "and d1.deputy_id != ? and d1.deputy_id != ? " +
                         "and d2.deputy_id != ? and d2.deputy_id != ? " +
                     "order by random() limit 1";
+
+    private static final String SELECT_RATING =
+            "select deputy_id, first_name, last_name, small_photo_url, big_photo_url, " +
+                    "positive_voices, negative_voices, " +
+                    "positive_voices * 2 - negative_voices as rating " +
+                    "from deputy order by rating desc offset ? limit ?";
+
+
+    public List<Deputy> getRating(int limit, int offset) {
+        if (limit < 0 || offset < 0) {
+            throw new IllegalArgumentException();
+        }
+        return deputyDAO.getDeputiesList(SELECT_RATING, limit, offset);
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String hotOrNotPOST(Model model,
@@ -47,14 +66,17 @@ public class HotOrNotController {
             voting(first, second, result);
         }
         Deputy[] deputies = null;
+        List<Deputy> rating = null;
         try {
             deputies = getNextPhotoURLs(first, second);
+            rating = getRating(20, 0);
         } catch (HotOrNotException e) {
             logger.severe(e.getMessage());
             // return error page
         }
         model.addAttribute("leftDeputy", deputies[0]);
         model.addAttribute("rightDeputy", deputies[1]);
+        model.addAttribute("rating", rating);
         if (isWidget) {
             return "hotornot/widget";
         }
@@ -122,7 +144,7 @@ public class HotOrNotController {
                 second.setId(rs.getInt(8));
             } else {
                 logger.severe("Something wrong with connection.\n" +
-                             "Cannot get next pair of deputies.");
+                        "Cannot get next pair of deputies.");
                 throw new HotOrNotException();
             }
         } catch (SQLException e) {
