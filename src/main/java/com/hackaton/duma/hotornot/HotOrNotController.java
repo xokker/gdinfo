@@ -1,5 +1,6 @@
 package com.hackaton.duma.hotornot;
 
+import com.hackaton.duma.dao.DeputyDAO;
 import com.hackaton.duma.model.Deputy;
 import org.apache.commons.dbcp.ConnectionFactory;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -21,12 +23,16 @@ import java.util.logging.Logger;
  * Date: 9/14/13
  * Time: 6:56 PM
  */
-@Controller("/hotornot")
+@Controller
+@RequestMapping("/hotornot")
 public class HotOrNotController {
     private static final Logger logger = Logger.getLogger(HotOrNotController.class.getName());
 
     @Resource(name = "connectionFactory")
     private ConnectionFactory connectionFactory;
+
+    @Resource(name = "deputyDAO")
+    private DeputyDAO deputyDAO;
 
     private static final String SELECT_DEPUTY =
             "select d1.big_photo_url, d1.first_name, d1.last_name, d1.deputy_id, " +
@@ -37,8 +43,23 @@ public class HotOrNotController {
                         "and d2.deputy_id != ? and d2.deputy_id != ? " +
                     "order by random() limit 1";
 
+
+    public List<Deputy> getRating(int limit, int offset) {
+        if (limit < 0 || offset < 0) {
+            throw new IllegalArgumentException();
+        }
+        return deputyDAO.getHotTopDeputies(limit, offset);
+    }
+
+    @RequestMapping(value = "/antirating", method = RequestMethod.GET)
+    public String hotOrNotAntiratingGET(Model model) {
+        List<Deputy> rating = deputyDAO.getHotWorstDeputies(30, 0);
+        model.addAttribute("rating", rating);
+        return "ratings/antihotornot";
+    }
+
     @RequestMapping(method = RequestMethod.GET)
-    public String hotOrNotPOST(Model model,
+    public String hotOrNotGET(Model model,
                                @RequestParam(value = "first", defaultValue = "0") Integer first,
                                @RequestParam(value = "second", defaultValue = "0") Integer second,
                                @RequestParam(value = "result", defaultValue = "") String result,
@@ -47,14 +68,17 @@ public class HotOrNotController {
             voting(first, second, result);
         }
         Deputy[] deputies = null;
+        List<Deputy> rating = null;
         try {
             deputies = getNextPhotoURLs(first, second);
+            rating = getRating(20, 0);
         } catch (HotOrNotException e) {
             logger.severe(e.getMessage());
             // return error page
         }
         model.addAttribute("leftDeputy", deputies[0]);
         model.addAttribute("rightDeputy", deputies[1]);
+        model.addAttribute("rating", rating);
         if (isWidget) {
             return "hotornot/widget";
         }
@@ -122,7 +146,7 @@ public class HotOrNotController {
                 second.setId(rs.getInt(8));
             } else {
                 logger.severe("Something wrong with connection.\n" +
-                             "Cannot get next pair of deputies.");
+                        "Cannot get next pair of deputies.");
                 throw new HotOrNotException();
             }
         } catch (SQLException e) {

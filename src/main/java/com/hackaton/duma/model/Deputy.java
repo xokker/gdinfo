@@ -19,6 +19,7 @@ public class Deputy {
     private String bigPhotoURL;
     private Integer positiveVoices;
     private Integer negativeVoices;
+    private Integer rating;
 
     public Integer getId() {
         return id;
@@ -114,5 +115,13 @@ public class Deputy {
 
     public void setNegativeVoices(Integer negativeVoices) {
         this.negativeVoices = negativeVoices;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public Integer getRating() {
+        return rating;
     }
 }
