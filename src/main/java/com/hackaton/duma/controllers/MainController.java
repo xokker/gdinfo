@@ -7,6 +7,8 @@ package com.hackaton.duma.controllers;
  * Time: 17:10
  * To change this template use File | Settings | File Templates.
  */
+import org.apache.commons.dbcp.ConnectionFactory;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,14 +16,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 @Controller
 @RequestMapping("/")
 public class MainController {
+    private static Logger logger = Logger.getLogger(MainController.class);
+
+    @Resource(name = "connectionPool")
+    private ConnectionFactory connectionFactory;
 
     // Addition
     @RequestMapping( method = RequestMethod.GET)
     public String printAddition(ModelMap m) {
-        m.addAttribute("message", "Addition!");
+        String message = "";
+        Connection connection = null;
+        try {
+            connection = connectionFactory.createConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select count(*) from deputy");
+            if (rs.next()) {
+                message = String.valueOf(rs.getInt(1));
+            }
+        } catch (SQLException e) {
+            logger.error(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
+        }
+
+        m.addAttribute("message", "Addition! :: " + message);
         return "addition";
     }
 
