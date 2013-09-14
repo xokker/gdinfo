@@ -23,11 +23,22 @@ import java.util.List;
 @Component("deputyDAO")
 public class DeputyDAO {
     private static final Log logger = LogFactory.getLog(DeputyDAO.class);
+    private static final String SELECT_RATING =
+            "select deputy_id, first_name, last_name, small_photo_url, big_photo_url, " +
+                    "positive_voices, negative_voices, " +
+                    "positive_voices * 2 - negative_voices as rating " +
+                    "from deputy order by rating desc offset ? limit ?";
+
+    private static final String SELECT_RATING_REVERT =
+            "select deputy_id, first_name, last_name, small_photo_url, big_photo_url, " +
+            "positive_voices, negative_voices, " +
+            "positive_voices * 2 - negative_voices as rating " +
+            "from deputy order by rating asc offset ? limit ?";
 
     @Resource(name = "connectionFactory")
     private ConnectionFactory connectionFactory;
 
-    public List<Deputy> getDeputiesList(String sql, int limit, int offset) {
+    private List<Deputy> getDeputiesList(String sql, int limit, int offset) {
         List<Deputy> result = new ArrayList<Deputy>();
         Connection connection = null;
         try {
@@ -62,4 +73,11 @@ public class DeputyDAO {
         return result;
     }
 
+    public List<Deputy> getHotTopDeputies(int limit, int offset) {
+        return getDeputiesList(SELECT_RATING, limit, offset);
+    }
+
+    public List<Deputy> getHotWorstDeputies(int limit, int offset) {
+        return getDeputiesList(SELECT_RATING_REVERT, limit, offset);
+    }
 }

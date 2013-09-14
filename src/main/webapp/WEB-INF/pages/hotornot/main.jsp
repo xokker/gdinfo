@@ -26,47 +26,25 @@
             width: 600px;
         }
         .results {
-            width: 300px;
+            width: 600px;
         }
         .versus {
             display: inline-block;
             position: relative;
             top: -100px;
         }
+        td > .label{
+            display: block;
+            width: 50px;
+        }
+        .num{
+            width: 30px;
+        }
     </style>
 </head>
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Gdinfo</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="#">Депутаты</a></li>
-                <li><a href="#about">Партии</a></li>
-                <li class="active"><a href="#contact">Hot Or Not</a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Антирейтинг <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Ленивые депутаты</a></li>
-                        <li><a href="#">Непопулярные депутаты</a></li>
-                        <li><a href="#">Not Hot депутаты</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</div>
+<jsp:include page="../menu.jsp" />
 
 <div class="container">
     <div class="choise">
@@ -96,6 +74,7 @@
         <table class="table" style="text-align: left">
             <thead>
             <tr>
+                <th class="num">№</th>
                 <th>Депутат</th>
                 <th>Плюсов</th>
                 <th>Минусов</th>
@@ -103,8 +82,9 @@
             </thead>
 
             <tbody>
-            <c:forEach var="dep" items="${rating}">
+            <c:forEach var="dep" items="${rating}" varStatus="counter">
                 <tr>
+                    <td><p>${counter.count}</p></td>
                     <td><a href="">${dep.firstName} ${dep.lastName}</a></td>
                     <td><span class="label label-success"><c:out value="${dep.positiveVoices}"/></span></td>
                     <td><span class="label label-warning"><c:out value="${dep.negativeVoices}"/></span></td>

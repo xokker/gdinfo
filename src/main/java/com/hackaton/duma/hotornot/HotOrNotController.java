@@ -23,7 +23,8 @@ import java.util.logging.Logger;
  * Date: 9/14/13
  * Time: 6:56 PM
  */
-@Controller("/hotornot")
+@Controller
+@RequestMapping("/hotornot")
 public class HotOrNotController {
     private static final Logger logger = Logger.getLogger(HotOrNotController.class.getName());
 
@@ -42,22 +43,23 @@ public class HotOrNotController {
                         "and d2.deputy_id != ? and d2.deputy_id != ? " +
                     "order by random() limit 1";
 
-    private static final String SELECT_RATING =
-            "select deputy_id, first_name, last_name, small_photo_url, big_photo_url, " +
-                    "positive_voices, negative_voices, " +
-                    "positive_voices * 2 - negative_voices as rating " +
-                    "from deputy order by rating desc offset ? limit ?";
-
 
     public List<Deputy> getRating(int limit, int offset) {
         if (limit < 0 || offset < 0) {
             throw new IllegalArgumentException();
         }
-        return deputyDAO.getDeputiesList(SELECT_RATING, limit, offset);
+        return deputyDAO.getHotTopDeputies(limit, offset);
+    }
+
+    @RequestMapping(value = "/antirating", method = RequestMethod.GET)
+    public String hotOrNotAntiratingGET(Model model) {
+        List<Deputy> rating = deputyDAO.getHotWorstDeputies(30, 0);
+        model.addAttribute("rating", rating);
+        return "ratings/antihotornot";
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String hotOrNotPOST(Model model,
+    public String hotOrNotGET(Model model,
                                @RequestParam(value = "first", defaultValue = "0") Integer first,
                                @RequestParam(value = "second", defaultValue = "0") Integer second,
                                @RequestParam(value = "result", defaultValue = "") String result,

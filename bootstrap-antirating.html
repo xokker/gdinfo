@@ -9,13 +9,7 @@
         body {
             padding-top: 60px;
         }
-        .deputy-block {
-            display: inline-block;
-            width: 170px;
-        }
-        .deputy-block .title {
-            display: block;
-        }
+        
         .choise, .results {
             text-align: center;
             margin: 0 auto;
@@ -23,20 +17,33 @@
         .choise {
             width: 600px;
         }
-        .results {
-            width: 600px;
+        .results > h1{
+            width: 300px;
+            padding: 0px auto;
+            margin: 0px auto;
+            font-size: 35pt;
         }
-        .versus {
-            display: inline-block;
-            position: relative;
-            top: -100px;
+        th{
+            font-size: 30pt;
+            padding:8px 15px!important;
         }
-        td > .label{
-            display: block;
-            width: 50px;
+        td > a{
+            font-size: 15pt;
+        }
+        td > span{
+            font-size: 12pt!important;
+            margin: 0 auto;
+            display: block!important;
+        }
+        td > p{
+            text-align: center;
+            font-size: 13pt;
         }
         .num{
-            width: 30px;
+            width: 100px;
+        }
+        .rate{
+            width:200px;
         }
         </style>
     </head>
@@ -56,7 +63,7 @@
               <ul class="nav navbar-nav">
                 <li><a href="#">Депутаты</a></li>
                 <li><a href="#about">Партии</a></li>
-                <li class="active"><a href="#contact">Hot Or Not</a></li>
+                <li><a href="#contact">Hot Or Not</a></li>
               </ul>
 
               <ul class="nav navbar-nav navbar-right">
@@ -74,29 +81,16 @@
         </div>
 
         <div class="container">
-            <div class="choise">
-                <div class="deputy-block">
-                    <a href="#"><img src="http://www.duma.gov.ru/upload/iblock/28b/28b3374efb18ddc91c72373265e2f001.jpg" class="img-thumbnail"></a>
-                    <a href="#" class="title">Иванов</a>
-                </div>
-                <div class="versus">
-                    <span class="label label-primary">vs</span>
-                </div>
-                <div class="deputy-block">
-                    <a href="#"><img src="http://www.duma.gov.ru/upload/iblock/e8d/e8d7d96da5b9ebe55022e0e2245ccced.jpg" class="img-thumbnail"></a>
-                    <a href="#" class="title">Жириновский</a>
-                </div>
-            </div>
-
             <div class="results">
-                <h3>Результаты</h3>
+                <h1>Антирейтинг</h1>
                 <table class="table" style="text-align: left">
                     <thead>
                         <tr>
                             <th class="num">№</th>
                             <th>Депутат</th>
-                            <th>Плюсов</th>
-                            <th>Минусов</th>
+                            <th class="rate">Плюсов</th>
+                            <th class="rate">Минусов</th>
+                            <th class="rate">Рейтинг</th>
                         </tr>
                     </thead>
 
@@ -105,7 +99,8 @@
                             <td><p>1</p></td>
                             <td><a href="">Жириновский</a></td>
                             <td><span class="label label-success">15</span></td>
-                            <td><span class="label label-warning">15</span></td>
+                            <td><span class="label label-warning">55</span></td>
+                            <td><span class="label label-info">55</span></td>
                         </tr>
                     </tbody>
                 </table>
