@@ -8,7 +8,6 @@ package com.hackaton.duma.controllers;
  * To change this template use File | Settings | File Templates.
  */
 import org.apache.commons.dbcp.ConnectionFactory;
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,11 +20,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/")
 public class MainController {
-    private static Logger logger = Logger.getLogger(MainController.class);
+    private static Logger logger = Logger.getLogger(MainController.class.getName());
 
     @Resource(name = "connectionFactory")
     private ConnectionFactory connectionFactory;
@@ -43,13 +43,13 @@ public class MainController {
                 message = String.valueOf(rs.getInt(1));
             }
         } catch (SQLException e) {
-            logger.error(e);
+            logger.severe(e.getMessage());
         } finally {
             if (connection != null) {
                 try {
                     connection.close();
                 } catch (SQLException e) {
-                    logger.error(e);
+                    logger.severe(e.getMessage());
                 }
             }
         }
