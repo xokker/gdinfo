@@ -41,6 +41,48 @@
             width: 30px;
         }
     </style>
+    <script>
+        $(document).ready(function(){
+            var jsonMassive;
+            var url;
+            $.ajax({
+                type:"GET",
+                url: "http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/hotornot/ajax.json",
+                success: function(result){
+                    jsonMassive = result;
+                    for(i=0; i<2; i++){
+                        console.log(i);
+                        $(".img-thumbnail").eq(i).attr("src",jsonMassive[i]["bigPhotoURL"]);
+                        $(".deputy-block").eq(i).children("a").eq(1).attr("href","http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassive[i]["id"]);
+                        $(".deputy-block").eq(i).children("a").eq(1).text(jsonMassive[0]["firstName"] + " " + jsonMassive[i]["lastName"]);
+                    }
+                },
+                dataType:"json"
+            });
+            $(".deputy-block").children("a").click(function() {
+                index = $(this).parent().index();
+                if (index == 0) {
+                    url = "http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/hotornot/ajax.json?first="+jsonMassive[0]["id"]+"&second="+jsonMassive[1]["id"]+"&result=left";
+                } else {
+                    url = "http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/hotornot/ajax.json?first="+jsonMassive[0]["id"]+"&second="+jsonMassive[1]["id"]+"&result=right";
+                }
+                $.ajax({
+                    type:"GET",
+                    url: url,
+                    success: function(result){
+                        var jsonMassive = result;
+                        for(i=0;i<2;i++){
+                            console.log(i);
+                            $(".img-thumbnail").eq(i).attr("src",jsonMassive[i]["bigPhotoURL"]);
+                            $(".deputy-block").eq(i).children("a").eq(1).attr("href","http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassive[i]["id"]);
+                            $(".deputy-block").eq(i).children("a").eq(1).text(jsonMassive[0]["firstName"] + " " + jsonMassive[i]["lastName"]);
+                        }
+                    },
+                    dataType:"json"
+                })
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -48,24 +90,24 @@
 
 <div class="container">
     <div class="choise">
+        <%--<div class="deputy-block">--%>
+            <%--<a href="<c:url value="/hotornot">--%>
+            <%--<c:param name="first" value="${leftDeputy.id}" />--%>
+            <%--<c:param name="second" value="${rightDeputy.id}" />--%>
+            <%--<c:param name="result" value="left" />--%>
+            <%--</c:url>"><img src="${leftDeputy.bigPhotoURL}" class="img-thumbnail"></a>--%>
+            <%--<a href="<c:url value="/${leftDeputy.id}"/>" class="title">${leftDeputy.lastName}</a>--%>
+        <%--</div>--%>
         <div class="deputy-block">
-            <a href="<c:url value="/hotornot">
-            <c:param name="first" value="${leftDeputy.id}" />
-            <c:param name="second" value="${rightDeputy.id}" />
-            <c:param name="result" value="left" />
-            </c:url>"><img src="${leftDeputy.bigPhotoURL}" class="img-thumbnail"></a>
-            <a href="<c:url value="/${leftDeputy.id}"/>" class="title">${leftDeputy.lastName}</a>
+            <a href=""><img src="" class="img-thumbnail"></a>
+            <a href="" class="title"></a>
         </div>
         <div class="versus">
             <span class="label label-primary">vs</span>
         </div>
         <div class="deputy-block">
-            <a href="<c:url value="/hotornot">
-            <c:param name="first" value="${leftDeputy.id}" />
-            <c:param name="second" value="${rightDeputy.id}" />
-            <c:param name="result" value="right" />
-            </c:url>"><img src="${rightDeputy.bigPhotoURL}" class="img-thumbnail"></a>
-            <a href="<c:url value="/${rightDeputy.id}"/>" class="title">${rightDeputy.lastName}</a>
+            <a href=""><img src="" class="img-thumbnail"></a>
+            <a href="" class="title"></a>
         </div>
     </div>
 

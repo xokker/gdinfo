@@ -58,11 +58,11 @@ public class DeputyDAO {
     private static final String SELECT_LAZIEST =
             "select deputy_id, first_name, last_name, small_photo_url, big_photo_url, " +
                     "laziness, law_count " +
-                    "from deputy order by laziness desc offset ? limit ?";
+                    "from deputy order by law_count asc offset ? limit ?";
 
     private static final String SELECT_USER_TOPICS =
             "select dt.topic_id, cast(dt.law_count as float) / d.law_count * 100  " +
-            "from deputy_topic dt join deputy d on dt.deputy_id = d.api_id  where d.deputy_id = ? " +
+            "from deputy_topic dt join deputy d on dt.deputy_id = d.api_id where d.deputy_id = ? " +
             "order by topic_id";
 
 
@@ -219,8 +219,8 @@ public class DeputyDAO {
         return new Deputy[] {first, second};
     }
 
-    public Map<Integer, Integer> getTopicRate(int id) throws IndexException {
-        Map<Integer,Integer> result = new HashMap<Integer,Integer>();
+    public Map<String, Float> getTopicRate(int id) throws IndexException {
+        Map<String, Float> result = new HashMap<String, Float>();
 
         Connection connection = null;
         try {
@@ -229,7 +229,7 @@ public class DeputyDAO {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                result.put(rs.getInt(1), rs.getInt(2));
+                result.put(String.valueOf(rs.getInt(1)), rs.getFloat(2));
                 logger.info("Topic: " + rs.getInt(1) + " Rate: " + rs.getInt(2));
 
             }
