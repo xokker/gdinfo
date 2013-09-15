@@ -17,7 +17,7 @@
             float: left;
         }
         .dep-left img, .dep-right img {
-            width: 120px;
+            width: 110px;
         }
         .dep-left {
             margin-right: 6px;
@@ -42,29 +42,66 @@
 
         }
     </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+    <script type="text/javascript">
+        $(function() {
+            getIds = function() {
+                return $(".depLink").map(function() { return $(this).data('id') })
+            }
+            $(".depLink").click(function(e) {
+                e.preventDefault()
+
+                var link = $(this)
+                var depId = link.data('id')
+                var ids = getIds()
+
+                var result;
+                if(depId == ids[0]) {
+                    result = "left"
+                }
+                else {
+                    result = "right"
+                }
+                url = "/gdinfo/hotornot/ajax.json?first="+ids[0]+"&second="+ids[1]+"&result="+result;
+
+                $.ajax({
+                    type:"GET",
+                    url: url,
+                    dataType:"json",
+                    success: function(result){
+                        var deps = $(".depLink");
+                        deps.fadeOut();
+                        deps.each(function(i, link) {
+                            link = $(link);
+                            link.find("a").data("id", result[i].id)
+                            link.find("img").attr("src", result[i]["bigPhotoURL"]);
+                        })
+
+                        deps.fadeIn();
+
+
+                        $(".choice strong").eq(0).text(result[0]["lastName"])
+                        $(".choice strong").eq(1).text(result[1]["lastName"])
+
+                    }
+
+                })
+            })
+        })
+    </script>
 </head>
 <body>
-<a href="<c:url value="/hotornot">
-    <c:param name="first" value="${leftDeputy.id}" />
-    <c:param name="second" value="${rightDeputy.id}" />
-    <c:param name="isWidget" value="true" />
-    <c:param name="result" value="left" />
-    </c:url>" class="dep-left">
+<a class="depLink" data-id="${leftDeputy.id}" href="javascript:;" class="dep-left">
     <img src="${leftDeputy.bigPhotoURL}">
 </a>
 
-<a href="<c:url value="/hotornot">
-    <c:param name="first" value="${leftDeputy.id}" />
-    <c:param name="second" value="${rightDeputy.id}" />
-    <c:param name="isWidget" value="true" />
-    <c:param name="result" value="right" />
-    </c:url>" class="dep-right">
+<a class="depLink" data-id="${rightDeputy.id}" href="javascript:;" class="dep-right">
     <img src="${rightDeputy.bigPhotoURL}">
 </a>
 
 <div class="info">
     <div class="choice"><strong>${leftDeputy.lastName}</strong> или <strong>${rightDeputy.lastName}</strong></b>?</div>
-    <a class="results" href="/results"></a>
+    <a class="results" href="/gdinfo/hotornot" target="_blank"></a>
 </div>
 </body>
 </html>

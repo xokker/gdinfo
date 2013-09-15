@@ -28,7 +28,7 @@ public class PartyDAO {
                     "from party";
 
     private static final String SELECT_PARTY =
-            "select party_id, name, short_name, number_of_members, number_of_laws, picture_url " +
+            "select party_id, name, short_name, number_of_members, number_of_laws, picture_url, link " +
                     "from party where party_id = ?";
 
     private static final String SELECT_PARTY_TOPICS =
@@ -86,6 +86,7 @@ public class PartyDAO {
                 result.setPictureURL(rs.getString("picture_url"));
                 result.setNumberOfMembers(rs.getInt("number_of_members"));
                 result.setNumberOfLaws(rs.getInt("number_of_laws"));
+                result.setLink(rs.getString("link"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

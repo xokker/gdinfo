@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bootstrap</title>
+    <title>Самые пассивные депутаты</title>
     <!-- Bootstrap -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -92,13 +92,13 @@
 
 <div class="container">
     <div class="results">
-        <h1>Самые ленивые депутаты</h1>
+        <h1>Самые пассивные депутаты</h1>
         <table class="table table-condensed" style="text-align: left">
             <thead>
             <tr>
                 <th class="num">№</th>
                 <th class="surname">Депутат</th>
-                <th class="rate">Подано</th>
+                <th class="rate">Кол-во законопроектов</th>
                 <%--<th class="rate"><span>% непринятых</span></th>--%>
             </tr>
             </thead>

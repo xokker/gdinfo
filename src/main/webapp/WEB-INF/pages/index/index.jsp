@@ -52,11 +52,11 @@
                         <!--<h1>Иванов Иван Иванович</h1> -->
                         <h1>${deputy.lastName} ${deputy.firstName} ${deputy.middleName}</h1>
                         <p>
-                            <a href="http://www.duma.gov.ru/structure/deputies/${deputy.siteId}/" class="duma_govProfile">Профиль на сайте Госдумы</a>
+                            <a href="http://www.duma.gov.ru/structure/deputies/${deputy.siteId}/" target="_blank" class="duma_govProfile">Профиль на сайте Госдумы</a>
                         </p>
-                        <p>
-                            <a href="https://twitter.com/ageev_a" class="twitterProfile">Профиль на сайте twitter</a>
-                        </p>
+                        <%--<p>--%>
+                            <%--<a href="https://twitter.com/ageev_a" class="twitterProfile">Профиль на сайте twitter</a>--%>
+                        <%--</p>--%>
                     </div>
                 </div>
             </div>
@@ -168,10 +168,10 @@
                             <div class="comment">Активность</div>
                         </div>
 
-                        <div class="activity">
-                            <div class="percent">90%</div>
-                            <div class="comment">Популярность</div>
-                        </div>
+                        <%--<div class="activity">--%>
+                            <%--<div class="percent">90%</div>--%>
+                            <%--<div class="comment">Популярность</div>--%>
+                        <%--</div>--%>
 
                         <div class="activity">
                             <div class="percent">70%</div>

@@ -51,6 +51,7 @@
                         <h1>${party.name}</h1>
                         <p>${party.numberOfMembers} членов в ГД</p>
                         <p>${party.numberOfLaws} законов внесены в ГД</p>
+                        <p><a target="_blank" href="${party.link}">Официальный сайт партии</a></p>
                     </div>
                 </div>
             </div>

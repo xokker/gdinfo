@@ -10,6 +10,9 @@
             top: 10px;
             left: 10px;
         }
+        body {
+            padding-top: 60px;
+        }
     </style>
     <div class="container">
         <div class="navbar-header">
@@ -34,7 +37,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Антирейтинг<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/gdinfo/laziest">Ленивые депутаты</a></li>
+                        <li><a href="/gdinfo/laziest">Пассивные депутаты</a></li>
                         <%--<li><a href="#">Непопулярные депутаты</a></li>--%>
                         <li><a href="/gdinfo/hotornot/antirating">Наименьший индекс доверия</a></li>
                     </ul>

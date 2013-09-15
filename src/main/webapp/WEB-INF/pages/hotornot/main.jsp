@@ -8,9 +8,7 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style type="text/css">
-        body {
-            padding-top: 60px;
-        }
+
         .deputy-block {
             display: inline-block;
             width: 170px;
@@ -41,44 +39,58 @@
         .num{
             width: 30px;
         }
+        .h1 {
+            width: 400px!important;
+        }
+        .centered {
+            text-align: center;
+        }
     </style>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
     <script>
-        $(document).ready(function(){
+        $(function(){
             var jsonMassive;
             var url;
             $.ajax({
-                type:"GET",
-                url: "http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/hotornot/ajax.json",
+                type: "GET",
+                url: "/gdinfo/hotornot/ajax.json",
                 success: function(result){
                     jsonMassive = result;
+                    images = $(".img-thumbnail");
                     for(i=0; i<2; i++){
-                        console.log(i);
-                        $(".img-thumbnail").eq(i).attr("src",jsonMassive[i]["bigPhotoURL"]);
-                        $(".deputy-block").eq(i).children("a").eq(1).attr("href","http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassive[i]["id"]);
+                        images.eq(i).attr("src",jsonMassive[i]["bigPhotoURL"]);
+                        $(".deputy-block").eq(i).children("a").eq(1).attr("href","/gdinfo/"+jsonMassive[i]["id"]);
                         $(".deputy-block").eq(i).children("a").eq(1).text(jsonMassive[i]["firstName"] + " " + jsonMassive[i]["lastName"]);
                     }
                 },
                 dataType:"json"
             });
-            $(".deputy-block").children("a").click(function() {
+            $(".deputy-block").children("a").click(function(e) {
+                e.preventDefault();
+
                 index = $(this).parent().index();
                 if (index == 0) {
-                    url = "http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/hotornot/ajax.json?first="+jsonMassive[0]["id"]+"&second="+jsonMassive[1]["id"]+"&result=left";
+                    url = "/gdinfo/hotornot/ajax.json?first="+jsonMassive[0]["id"]+"&second="+jsonMassive[1]["id"]+"&result=left";
                 } else {
-                    url = "http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/hotornot/ajax.json?first="+jsonMassive[0]["id"]+"&second="+jsonMassive[1]["id"]+"&result=right";
+                    url = "/gdinfo/hotornot/ajax.json?first="+jsonMassive[0]["id"]+"&second="+jsonMassive[1]["id"]+"&result=right";
                 }
                 $.ajax({
                     type:"GET",
                     url: url,
                     success: function(result){
+                        var images = $(".img-thumbnail")
                         var jsonMassive = result;
+                        var deps = $(".deputy-block");
+                        deps.fadeOut();
                         for(i=0;i<2;i++){
-                            console.log(i);
-                            $(".img-thumbnail").eq(i).attr("src",jsonMassive[i]["bigPhotoURL"]);
-                            $(".deputy-block").eq(i).children("a").eq(1).attr("href","http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassive[i]["id"]);
-                            $(".deputy-block").eq(i).children("a").eq(1).text(jsonMassive[i]["firstName"] + " " + jsonMassive[i]["lastName"]);
+                            var depBlock = deps.eq(i)
+
+                            images.eq(i).attr("src",jsonMassive[i]["bigPhotoURL"]);
+
+                            depBlock.children("a").eq(1).attr("href","http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassive[i]["id"]);
+                            depBlock.children("a").eq(1).text(jsonMassive[i]["firstName"] + " " + jsonMassive[i]["lastName"]);
                         }
+                        deps.fadeIn();
                     },
                     dataType:"json"
                 })
@@ -90,9 +102,8 @@
 
 <jsp:include page="../menu.jsp" />
 
-<h1>Кому больше доверия?</h1>
-
 <div class="container">
+    <h1 class="centered">Кому Вы больше доверяете?</h1>
     <div class="choise">
         <%--<div class="deputy-block">--%>
             <%--<a href="<c:url value="/hotornot">--%>
@@ -107,7 +118,7 @@
             <a href="" class="title"></a>
         </div>
         <div class="versus">
-            <span class="label label-primary">vs</span>
+            <span style="font-size: 20px;" class="label label-primary">vs</span>
         </div>
         <div class="deputy-block">
             <a href=""><img src="" class="img-thumbnail"></a>

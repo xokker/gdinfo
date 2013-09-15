@@ -13,6 +13,7 @@ public class Party {
     private Integer numberOfMembers;
     private Integer numberOfLaws;
     private String pictureURL;
+    private String link;
 
     public Integer getId() {
         return id;
@@ -60,5 +61,13 @@ public class Party {
 
     public void setNumberOfLaws(Integer numberOfLaws) {
         this.numberOfLaws = numberOfLaws;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }
