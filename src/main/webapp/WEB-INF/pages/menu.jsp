@@ -18,13 +18,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/gdinfo">Gdinfo</a>
+            <a class="navbar-brand" href="/gdinfo">Главная</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#">Депутаты</a></li>
                 <li><a href="#about">Партии</a></li>
-                <li class="active"><a href="/gdinfo/hotornot">Hot Or Not</a></li>
+                <li class="active"><a href="/gdinfo/hotornot">Индекс доверия</a></li>
             </ul>
 
             <!-- Яндекс поиск-->
