@@ -14,7 +14,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -57,6 +59,12 @@ public class DeputyDAO {
             "select deputy_id, first_name, last_name, small_photo_url, big_photo_url, " +
                     "laziness, law_count " +
                     "from deputy order by laziness desc offset ? limit ?";
+
+    private static final String SELECT_USER_TOPICS =
+            "select dt.topic_id, cast(dt.law_count as float) / d.law_count * 100  " +
+            "from deputy_topic dt join deputy d on dt.deputy_id = d.api_id  where d.deputy_id = ? " +
+            "order by topic_id";
+
 
     @Resource(name = "connectionFactory")
     private ConnectionFactory connectionFactory;
@@ -209,6 +217,34 @@ public class DeputyDAO {
         }
 
         return new Deputy[] {first, second};
+    }
+
+    public Map<Integer, Integer> getTopicRate(int id) throws IndexException {
+        Map<Integer,Integer> result = new HashMap<Integer,Integer>();
+
+        Connection connection = null;
+        try {
+            connection = connectionFactory.createConnection();
+            PreparedStatement ps = connection.prepareStatement(SELECT_USER_TOPICS);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result.put(rs.getInt(1), rs.getInt(2));
+                logger.info("Topic: " + rs.getInt(1) + " Rate: " + rs.getInt(2));
+
+            }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+        }
+        return result;
     }
 
     public void voting(final int first, final int second, final String result) {

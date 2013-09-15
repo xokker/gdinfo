@@ -69,23 +69,41 @@
                 </div>
 
                 <div class="col-md-5">
-                    <h3>Образование</h3>
+                    <h3>Государственное строительство и конституционные права граждан</h3>
                     <div class="progress">
-                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                        <span class="sr-only">40% Complete (success)</span>
+                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${rate_map['62698']}" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                        <span class="sr-only">${rate_map['62698']}% Complete (success)</span>
                       </div>
                     </div>
-                    <h3>Обучение</h3>
+                    <h3>Экономическая политика</h3>
                     <div class="progress">
-                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                        <span class="sr-only">20% Complete</span>
+                      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${rate_map['62699']}" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                        <span class="sr-only">${rate_map['62699']}% Complete</span>
                       </div>
                     </div>
-                    <h3>Другая категория</h3>
+                    <h3>Социальная политика</h3>
                     <div class="progress">
-                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                        <span class="sr-only">60% Complete (warning)</span>
+                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${rate_map['62700']}" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                        <span class="sr-only">${rate_map['62700']}% Complete (warning)</span>
                       </div>
+                    </div>
+                    <h3>Бюджетное, налоговое, финансовое законодательство</h3>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${rate_map['62701']}" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            <span class="sr-only">${rate_map['62701']}% Complete (success)</span>
+                        </div>
+                    </div>
+                    <h3>Оборона и безопасность</h3>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${rate_map['62702']}" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            <span class="sr-only">${rate_map['62702']}% Complete (success)</span>
+                        </div>
+                    </div>
+                    <h3>Ратификация международных договоров Российской Федерации</h3>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${rate_map['62703']}" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            <span class="sr-only">${rate_map['62703']}% Complete (success)</span>
+                        </div>
                     </div>
 
                     <h2>Факторы</h2>

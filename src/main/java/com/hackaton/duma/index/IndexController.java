@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.logging.Logger;
 
 /**
@@ -44,13 +45,16 @@ public class IndexController {
     public String hotOrNotPOST(Model model, @PathVariable(value = "id") Integer id) {
 
         Deputy deputy = null;
+        Map<Integer,Integer> rateMap = null;
         try {
             deputy = deputyDAO.getDeputy(id);
+            rateMap = deputyDAO.getTopicRate(id);
         } catch (IndexException e) {
             logger.severe(e.getMessage());
             // return error page
         }
         model.addAttribute("deputy", deputy);
+        model.addAttribute("rate_map", rateMap);
         //model.addAttribute("leftDeputy", deputies[0]);
         //model.addAttribute("rightDeputy", deputies[1]);
 
