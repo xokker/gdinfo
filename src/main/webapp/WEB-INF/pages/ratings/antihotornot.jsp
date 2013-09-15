@@ -72,7 +72,7 @@
             <c:forEach var="dep" items="${rating}" varStatus="counter">
                 <tr>
                     <td><p>${counter.count}</p></td>
-                    <td><a href="">${dep.firstName} ${dep.lastName}</a></td>
+                    <td><a href="<c:url value="/${dep.id}"/>">${dep.firstName} ${dep.lastName}</a></td>
                     <td><span class="label label-success">${dep.positiveVoices}</span></td>
                     <td><span class="label label-warning">${dep.negativeVoices}</span></td>
                     <td><span class="label label-info">${dep.rating}</span></td>

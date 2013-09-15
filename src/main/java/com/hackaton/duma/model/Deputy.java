@@ -20,6 +20,8 @@ public class Deputy {
     private Integer positiveVoices;
     private Integer negativeVoices;
     private Integer rating;
+    private Float laziness;
+    private Integer lawCount;
 
     public Integer getId() {
         return id;
@@ -123,5 +125,21 @@ public class Deputy {
 
     public Integer getRating() {
         return rating;
+    }
+
+    public Float getLaziness() {
+        return laziness;
+    }
+
+    public void setLaziness(Float laziness) {
+        this.laziness = laziness;
+    }
+
+    public Integer getLawCount() {
+        return lawCount;
+    }
+
+    public void setLawCount(Integer lawCount) {
+        this.lawCount = lawCount;
     }
 }

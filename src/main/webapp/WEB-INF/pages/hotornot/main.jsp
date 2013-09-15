@@ -54,7 +54,7 @@
             <c:param name="second" value="${rightDeputy.id}" />
             <c:param name="result" value="left" />
             </c:url>"><img src="${leftDeputy.bigPhotoURL}" class="img-thumbnail"></a>
-            <a href="#" class="title">${leftDeputy.lastName}</a>
+            <a href="<c:url value="/${leftDeputy.id}"/>" class="title">${leftDeputy.lastName}</a>
         </div>
         <div class="versus">
             <span class="label label-primary">vs</span>
@@ -65,7 +65,7 @@
             <c:param name="second" value="${rightDeputy.id}" />
             <c:param name="result" value="right" />
             </c:url>"><img src="${rightDeputy.bigPhotoURL}" class="img-thumbnail"></a>
-            <a href="#" class="title">${rightDeputy.lastName}</a>
+            <a href="<c:url value="/${rightDeputy.id}"/>" class="title">${rightDeputy.lastName}</a>
         </div>
     </div>
 
@@ -85,7 +85,7 @@
             <c:forEach var="dep" items="${rating}" varStatus="counter">
                 <tr>
                     <td><p>${counter.count}</p></td>
-                    <td><a href="">${dep.firstName} ${dep.lastName}</a></td>
+                    <td><a href="<c:url value="/${dep.id}"/>">${dep.firstName} ${dep.lastName}</a></td>
                     <td><span class="label label-success"><c:out value="${dep.positiveVoices}"/></span></td>
                     <td><span class="label label-warning"><c:out value="${dep.negativeVoices}"/></span></td>
                 </tr>

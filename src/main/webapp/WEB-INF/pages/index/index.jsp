@@ -54,7 +54,7 @@
                         <p>Дата родения:<span class="birthday">1 апреля 2000 г.</span></p>
                         <p>Стаж в думе:<span class="experience">10 лет</span></p>
                         <p>
-                            <a href="http://www.duma.gov.ru/structure/deputies/131221/" class="duma_govProfile">Профиль на сайте Госдумы</a>
+                            <a href="http://www.duma.gov.ru/structure/deputies/${deputy.siteId}/" class="duma_govProfile">Профиль на сайте Госдумы</a>
                         </p>
                         <p>
                             <a href="https://twitter.com/ageev_a" class="twitterProfile">Профиль на сайте twitter</a>

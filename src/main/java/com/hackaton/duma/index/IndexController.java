@@ -1,5 +1,6 @@
 package com.hackaton.duma.index;
 
+import com.hackaton.duma.dao.DeputyDAO;
 import com.hackaton.duma.hotornot.HotOrNotException;
 import com.hackaton.duma.model.Deputy;
 import org.apache.commons.dbcp.ConnectionFactory;
@@ -31,10 +32,8 @@ public class IndexController {
     @Resource(name = "connectionFactory")
     private ConnectionFactory connectionFactory;
 
-    private static final String SELECT_DEPUTY =
-            "select d.deputy_id, d.last_name, d.first_name, d.middle_name, d.big_photo_url " +
-                    "from deputy d " +
-                    "where d.deputy_id = ?";
+    @Resource(name = "deputyDAO")
+    private DeputyDAO deputyDAO;
 
 //    @RequestMapping(value = "/index", method = RequestMethod.GET)
 //    public String hotOrNotPOST(Model model) {
@@ -46,7 +45,7 @@ public class IndexController {
 
         Deputy deputy = null;
         try {
-            deputy = getDeputy(id);
+            deputy = deputyDAO.getDeputy(id);
         } catch (IndexException e) {
             logger.severe(e.getMessage());
             // return error page
@@ -56,41 +55,5 @@ public class IndexController {
         //model.addAttribute("rightDeputy", deputies[1]);
 
         return "index/index";
-    }
-
-    private Deputy getDeputy(int id) throws IndexException{
-        Deputy deputy = new Deputy();
-
-        Connection connection = null;
-        try {
-            connection = connectionFactory.createConnection();
-            PreparedStatement ps = connection.prepareStatement(SELECT_DEPUTY);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                deputy.setId(rs.getInt(1));
-                deputy.setLastName(rs.getString(2));
-                deputy.setFirstName(rs.getString(3));
-                deputy.setMiddleName(rs.getString(4));
-                deputy.setBigPhotoURL(rs.getString(5));
-                logger.info("Big photoUrl:" + deputy.getBigPhotoURL());
-            } else {
-                logger.severe("Something wrong with connection.\n" +
-                        "Cannot get next pair of deputies.");
-                throw new IndexException();
-            }
-        } catch (SQLException e) {
-            logger.severe(e.getMessage());
-            throw new IndexException(e);
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    logger.severe(e.getMessage());
-                }
-            }
-        }
-       return deputy;
     }
 }
