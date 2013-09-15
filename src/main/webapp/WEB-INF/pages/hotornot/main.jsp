@@ -90,6 +90,8 @@
 
 <jsp:include page="../menu.jsp" />
 
+<h1>Кому больше доверия?</h1>
+
 <div class="container">
     <div class="choise">
         <%--<div class="deputy-block">--%>
