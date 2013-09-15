@@ -1,8 +1,49 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <div class="navbar navbar-inverse navbar-fixed-top">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+        .deputy-block {
+            display: inline-block;
+            width: 170px;
+        }
+        .deputy-block .title {
+            display: block;
+        }
+        .choise, .results {
+            text-align: center;
+            margin: 0 auto;
+        }
+        .choise {
+            width: 600px;
+        }
+        .results {
+            width: 600px;
+        }
+        .versus {
+            display: inline-block;
+            position: relative;
+            top: -100px;
+        }
+        td > .label{
+            display: block;
+            width: 50px;
+        }
+        .num{
+            width: 30px;
+        }
+        #ya-site-form0{
+            float: left;
+            width:300px;
+            position:relative;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
     <div class="container">
-        <!-- Yandex.Search-->
-        <%--<div class="ya-site-form ya-site-form_inited_no" onclick="return {'bg': '#ffcc00', 'publicname': 'Yandex Site Search #2075992', 'target': '_self', 'language': 'ru', 'suggest': true, 'tld': 'ru', 'site_suggest': true, 'action': 'http://yandex.ru/sitesearch', 'webopt': false, 'fontsize': 15, 'arrow': true, 'fg': '#000000', 'searchid': '2075992', 'logo': 'rb', 'websearch': false, 'type': 2}"><form action="http://yandex.ru/sitesearch" method="get" target="_self"><input type="hidden" name="searchid" value="2075992" /><input type="hidden" name="l10n" value="ru" /><input type="hidden" name="reqenc" value="" /><input type="text" name="text" value="" /><input type="submit" value="Íàéòè" /></form></div><style type="text/css">.ya-page_js_yes .ya-site-form_inited_no { display: none; }</style><script type="text/javascript">(function(w,d,c){var s=d.createElement('script'),h=d.getElementsByTagName('script')[0],e=d.documentElement;(' '+e.className+' ').indexOf(' ya-page_js_yes ')===-1&&(e.className+=' ya-page_js_yes');s.type='text/javascript';s.async=true;s.charset='utf-8';s.src=(d.location.protocol==='https:'?'https:':'http:')+'//site.yandex.net/v2.0/js/all.js';h.parentNode.insertBefore(s,h);(w[c]||(w[c]=[])).push(function(){Ya.Site.Form.init()})})(window,document,'yandex_site_callbacks');</script>--%>
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
@@ -18,7 +59,8 @@
                 <li class="active"><a href="/gdinfo/hotornot">Hot Or Not</a></li>
             </ul>
 
-
+            <!-- Яндекс поиск-->
+            <div class="ya-site-form ya-site-form_inited_no" onclick="return {'bg': 'transparent', 'publicname': '\u0444\u044b\u0432\u0430', 'target': '_self', 'language': 'ru', 'suggest': true, 'tld': 'ru', 'site_suggest': true, 'action': 'http://yandex.ru/sitesearch', 'webopt': false, 'fontsize': 12, 'arrow': false, 'fg': '#000000', 'searchid': '2076012', 'logo': 'rb', 'websearch': false, 'type': 2}"><form action="http://yandex.ru/sitesearch" method="get" target="_self"><input type="hidden" name="searchid" value="2076012" /><input type="hidden" name="l10n" value="ru" /><input type="hidden" name="reqenc" value="" /><input type="text" name="text" value="" /><input type="submit" value="Найти" /></form></div><style type="text/css">.ya-page_js_yes .ya-site-form_inited_no { display: none; }</style><script type="text/javascript">(function(w,d,c){var s=d.createElement('script'),h=d.getElementsByTagName('script')[0],e=d.documentElement;(' '+e.className+' ').indexOf(' ya-page_js_yes ')===-1&&(e.className+=' ya-page_js_yes');s.type='text/javascript';s.async=true;s.charset='utf-8';s.src=(d.location.protocol==='https:'?'https:':'http:')+'//site.yandex.net/v2.0/js/all.js';h.parentNode.insertBefore(s,h);(w[c]||(w[c]=[])).push(function(){Ya.Site.Form.init()})})(window,document,'yandex_site_callbacks');</script>
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
