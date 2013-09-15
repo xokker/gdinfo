@@ -1,5 +1,6 @@
 package com.hackaton.duma.dao;
 
+import com.hackaton.duma.hotornot.HotOrNotException;
 import com.hackaton.duma.index.IndexException;
 import com.hackaton.duma.model.Deputy;
 import org.apache.commons.dbcp.ConnectionFactory;
@@ -30,6 +31,15 @@ public class DeputyDAO {
                     "d.big_photo_url, site_id " +
                     "from deputy d " +
                     "where d.deputy_id = ?";
+
+    private static final String SELECT_DEPUTY_PAIR =
+            "select d1.big_photo_url, d1.first_name, d1.last_name, d1.deputy_id, " +
+                    "d2.big_photo_url, d2.first_name, d2.last_name, d2.deputy_id " +
+                    "from deputy d1, deputy d2 " +
+                    "where d1.deputy_id != d2.deputy_id " +
+                    "and d1.deputy_id != ? and d1.deputy_id != ? " +
+                    "and d2.deputy_id != ? and d2.deputy_id != ? " +
+                    "order by random() limit 1";
 
     private static final String SELECT_RATING =
             "select deputy_id, first_name, last_name, small_photo_url, big_photo_url, " +
@@ -156,5 +166,84 @@ public class DeputyDAO {
             }
         }
         return deputy;
+    }
+
+    public Deputy[] getNextDeputies(int previousFirst, int previousSecond)
+            throws HotOrNotException {
+        Deputy first = new Deputy();
+        Deputy second = new Deputy();
+
+        Connection connection = null;
+        try {
+            connection = connectionFactory.createConnection();
+            PreparedStatement ps = connection.prepareStatement(SELECT_DEPUTY_PAIR);
+            ps.setInt(1, previousFirst);
+            ps.setInt(2, previousSecond);
+            ps.setInt(3, previousFirst);
+            ps.setInt(4, previousSecond);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                first.setBigPhotoURL(rs.getString(1));
+                first.setFirstName(rs.getString(2));
+                first.setLastName(rs.getString(3));
+                first.setId(rs.getInt(4));
+                second.setBigPhotoURL(rs.getString(5));
+                second.setFirstName(rs.getString(6));
+                second.setLastName(rs.getString(7));
+                second.setId(rs.getInt(8));
+            } else {
+                logger.error("Something wrong with connection.\n" +
+                        "Cannot get next pair of deputies.");
+                throw new HotOrNotException();
+            }
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+        }
+
+        return new Deputy[] {first, second};
+    }
+
+    public void voting(final int first, final int second, final String result) {
+        if (!result.equals("left") && !result.equals("right")) {
+            return;
+        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Connection connection = null;
+                try {
+                    connection = connectionFactory.createConnection();
+                    PreparedStatement psPlus = connection.prepareStatement("update deputy set positive_voices = positive_voices + 1 where deputy_id = ?");
+                    PreparedStatement psMinus = connection.prepareStatement("update deputy set negative_voices = negative_voices + 1 where deputy_id = ?");
+                    if (result.equals("left")) {
+                        psPlus.setInt(1, first);
+                        psMinus.setInt(1, second);
+                    } else {
+                        psPlus.setInt(1, second);
+                        psMinus.setInt(1, first);
+                    }
+                    psPlus.executeUpdate();
+                    psMinus.executeUpdate();
+                } catch (SQLException e) {
+                    logger.error(e);
+                } finally {
+                    if (connection != null) {
+                        try {
+                            connection.close();
+                        } catch (SQLException e) {
+                            logger.error(e);
+                        }
+                    }
+                }
+            }
+        }).start();
     }
 }

@@ -76,7 +76,7 @@
                     <td><p>${counter.count}</p></td>
                     <td><a href="<c:url value="/${dep.id}"/>">${dep.firstName} ${dep.lastName}</a></td>
                     <td><span class="label label-success">${dep.lawCount}</span></td>
-                    <td><span class="label label-warning">${dep.lazyness}</span></td>
+                    <td><span class="label label-warning">${dep.laziness}</span></td>
                 </tr>
             </c:forEach>
             </tbody>

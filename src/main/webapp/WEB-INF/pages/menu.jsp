@@ -18,10 +18,10 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Антирейтинг <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Антирейтинг<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Ленивые депутаты</a></li>
-                        <li><a href="#">Непопулярные депутаты</a></li>
+                        <li><a href="/gdinfo/laziest">Ленивые депутаты</a></li>
+                        <%--<li><a href="#">Непопулярные депутаты</a></li>--%>
                         <li><a href="/gdinfo/hotornot/antirating">Not Hot депутаты</a></li>
                     </ul>
                 </li>
