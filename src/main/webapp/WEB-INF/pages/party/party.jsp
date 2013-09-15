@@ -155,23 +155,23 @@
                     </c:when>
                     </c:choose>
 
-                    <h2>Факторы</h2>
-                    <div class="activities">
-                        <div class="activity">
-                            <div class="percent">80%</div>
-                            <div class="comment">Активность</div>
-                        </div>
+                    <%--<h2>Факторы</h2>--%>
+                    <%--<div class="activities">--%>
+                        <%--<div class="activity">--%>
+                            <%--<div class="percent">80%</div>--%>
+                            <%--<div class="comment">Активность</div>--%>
+                        <%--</div>--%>
 
-                        <div class="activity">
-                            <div class="percent">90%</div>
-                            <div class="comment">Популярность</div>
-                        </div>
+                        <%--<div class="activity">--%>
+                            <%--<div class="percent">90%</div>--%>
+                            <%--<div class="comment">Популярность</div>--%>
+                        <%--</div>--%>
 
-                        <div class="activity">
-                            <div class="percent">70%</div>
-                            <div class="comment">Hot Or Not</div>
-                        </div>
-                    </div>
+                        <%--<div class="activity">--%>
+                            <%--<div class="percent">70%</div>--%>
+                            <%--<div class="comment">Hot Or Not</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
 
                 </div>
             </div>

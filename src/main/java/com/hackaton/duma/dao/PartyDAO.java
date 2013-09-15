@@ -32,7 +32,7 @@ public class PartyDAO {
                     "from party where party_id = ?";
 
     private static final String SELECT_PARTY_TOPICS =
-            "select pt.topic_id, cast(pt.law_count as float) / p.law_count * 100 " +
+            "select pt.topic_id, cast(pt.number_of_laws as float) / p.number_of_laws * 100 " +
                     " from party_topic pt join party p on pt.party_id = p.party_id where p.party_id = ? " +
                     " order by topic_id";
 

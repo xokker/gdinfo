@@ -22,8 +22,8 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">Депутаты</a></li>
-                <li><a href="#about">Партии</a></li>
+                <li><a href="/gdinfo/">Депутаты</a></li>
+                <li><a href="/gdinfo/party">Партии</a></li>
                 <li class="active"><a href="/gdinfo/hotornot">Индекс доверия</a></li>
             </ul>
 
@@ -36,7 +36,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="/gdinfo/laziest">Ленивые депутаты</a></li>
                         <%--<li><a href="#">Непопулярные депутаты</a></li>--%>
-                        <li><a href="/gdinfo/hotornot/antirating">Not Hot депутаты</a></li>
+                        <li><a href="/gdinfo/hotornot/antirating">Наименьший индекс доверия</a></li>
                     </ul>
                 </li>
             </ul>
