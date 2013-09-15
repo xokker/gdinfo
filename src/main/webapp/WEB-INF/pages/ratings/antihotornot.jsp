@@ -56,7 +56,7 @@
 
 <div class="container">
     <div class="results">
-        <h1>Антирейтинг</h1>
+        <h1>Not not</h1>
         <table class="table" style="text-align: left">
             <thead>
             <tr>

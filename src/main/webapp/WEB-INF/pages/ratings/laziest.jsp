@@ -21,7 +21,7 @@
         }
         .results > h1{
             width: 300px;
-            padding: 0px;
+            padding: 0px auto;
             margin: 0px auto;
             font-size: 35pt;
         }
@@ -51,7 +51,40 @@
         h1{
             width: 400px!important;
         }
+        .btn-primary{
+            margin: auto;
+            display: block!important;
+            font-size: 20pt;
+        }
     </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+    <script>
+        $(document).ready(function() {
+            var num=0;
+            var numEnd=num+19;
+            var jsonMassiveLazy;
+            $.ajax({
+                type:"GET",
+                url: "http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/laziest/ajax.json",
+                success: function(result){
+                    jsonMassiveLazy = result;
+                    for(num;num<=numEnd;num++){
+                        $(".table").children("tbody").append("<tr><td><p>"+(num+1)+"</p></td><td><a href='http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassiveLazy[num]['id']+"'>"+jsonMassiveLazy[num]['lastName']+" "+jsonMassiveLazy[num]['firstName']+"</td><td><span class='label label-success'>"+jsonMassiveLazy[num]['lawCount']+"</span></td></tr>");
+                    }
+                    numEnd=num+19;
+                    console.log(numEnd);
+                },
+                dataType:"json"
+            });
+
+            $(".btn").click(function(){
+                for(num;num<=numEnd;num++){
+                    $(".table").children("tbody").append("<tr><td><p>"+(num+1)+"</p></td><td><a href='http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassiveLazy[num]['id']+"'>"+jsonMassiveLazy[num]['lastName']+" "+jsonMassiveLazy[num]['firstName']+"</td><td><span class='label label-success'>"+jsonMassiveLazy[num]['lawCount']+"</span></td></tr>");
+                }
+                numEnd = num + 19;
+            })
+        });
+    </script>
 </head>
 <body>
 
@@ -71,17 +104,18 @@
             </thead>
 
             <tbody>
-            <c:forEach var="dep" items="${rating}" varStatus="counter">
-                <tr>
-                    <td><p>${counter.count}</p></td>
-                    <td><a href="<c:url value="/${dep.id}"/>">${dep.firstName} ${dep.lastName}</a></td>
-                    <td><span class="label label-success">${dep.lawCount}</span></td>
-                    <%--<td><span class="label label-warning">${dep.laziness}</span></td>--%>
-                </tr>
-            </c:forEach>
+            <%--<c:forEach var="dep" items="${rating}" varStatus="counter">--%>
+                <%--<tr>--%>
+                    <%--<td><p>${counter.count}</p></td>--%>
+                    <%--<td><a href="<c:url value="/${dep.id}"/>">${dep.firstName} ${dep.lastName}</a></td>--%>
+                    <%--<td><span class="label label-success">${dep.lawCount}</span></td>--%>
+                    <%--&lt;%&ndash;<td><span class="label label-warning">${dep.laziness}</span></td>&ndash;%&gt;--%>
+                <%--</tr>--%>
+            <%--</c:forEach>--%>
             </tbody>
         </table>
     </div>
+    <button class="btn btn-primary">Дальше</button>
 </div>
 
 </div><!-- /.container -->

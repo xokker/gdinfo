@@ -24,6 +24,7 @@
         }
         .choise {
             width: 600px;
+            height: 210px;
         }
         .results {
             width: 600px;
@@ -55,7 +56,7 @@
                         console.log(i);
                         $(".img-thumbnail").eq(i).attr("src",jsonMassive[i]["bigPhotoURL"]);
                         $(".deputy-block").eq(i).children("a").eq(1).attr("href","http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassive[i]["id"]);
-                        $(".deputy-block").eq(i).children("a").eq(1).text(jsonMassive[0]["firstName"] + " " + jsonMassive[i]["lastName"]);
+                        $(".deputy-block").eq(i).children("a").eq(1).text(jsonMassive[i]["firstName"] + " " + jsonMassive[i]["lastName"]);
                     }
                 },
                 dataType:"json"
@@ -76,7 +77,7 @@
                             console.log(i);
                             $(".img-thumbnail").eq(i).attr("src",jsonMassive[i]["bigPhotoURL"]);
                             $(".deputy-block").eq(i).children("a").eq(1).attr("href","http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassive[i]["id"]);
-                            $(".deputy-block").eq(i).children("a").eq(1).text(jsonMassive[0]["firstName"] + " " + jsonMassive[i]["lastName"]);
+                            $(".deputy-block").eq(i).children("a").eq(1).text(jsonMassive[i]["firstName"] + " " + jsonMassive[i]["lastName"]);
                         }
                     },
                     dataType:"json"

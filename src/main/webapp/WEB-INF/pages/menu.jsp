@@ -3,38 +3,6 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <style type="text/css">
-        body {
-            padding-top: 60px;
-        }
-        .deputy-block {
-            display: inline-block;
-            width: 170px;
-        }
-        .deputy-block .title {
-            display: block;
-        }
-        .choise, .results {
-            text-align: center;
-            margin: 0 auto;
-        }
-        .choise {
-            width: 600px;
-        }
-        .results {
-            width: 600px;
-        }
-        .versus {
-            display: inline-block;
-            position: relative;
-            top: -100px;
-        }
-        td > .label{
-            display: block;
-            width: 50px;
-        }
-        .num{
-            width: 30px;
-        }
         #ya-site-form0{
             float: left;
             width:300px;

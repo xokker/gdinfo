@@ -33,7 +33,7 @@ public class LazyRatingController {
     @RequestMapping(value = "/ajax.json", method = RequestMethod.GET)
     @ResponseBody
     public List<Deputy> laziestAJAX(@RequestParam(value = "offset", defaultValue = "0") Integer offset,
-                                    @RequestParam(value = "limit", defaultValue = "20") Integer limit) {
+                                    @RequestParam(value = "limit", defaultValue = "100") Integer limit) {
         return deputyDAO.getLaziest(limit, offset);
     }
 }
