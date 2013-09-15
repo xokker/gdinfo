@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bootstrap</title>
+        <title>Информация о партии "${party.shortName}"</title>
         <!-- Bootstrap -->
         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -43,20 +43,14 @@
 
             <div class="row">
                 <div class="col-md-2">
-                    <!-- <img src="http://www.duma.gov.ru/upload/iblock/28b/28b3374efb18ddc91c72373265e2f001.jpg" class="img-thumbnail"> -->
-                    <img src="${deputy.bigPhotoURL}" class="img-thumbnail">
+                    <img src="${party.pictureURL}" class="img-thumbnail">
                 </div>
 
                 <div class="col-md-10">
                     <div class="information">
-                        <!--<h1>Иванов Иван Иванович</h1> -->
-                        <h1>${deputy.lastName} ${deputy.firstName} ${deputy.middleName}</h1>
-                        <p>
-                            <a href="http://www.duma.gov.ru/structure/deputies/${deputy.siteId}/" class="duma_govProfile">Профиль на сайте Госдумы</a>
-                        </p>
-                        <p>
-                            <a href="https://twitter.com/ageev_a" class="twitterProfile">Профиль на сайте twitter</a>
-                        </p>
+                        <h1>${party.name}</h1>
+                        <p>${party.numberOfMembers} членов в ГД</p>
+                        <p>${party.numberOfLaws} законов внесены в ГД</p>
                     </div>
                 </div>
             </div>

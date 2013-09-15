@@ -3,6 +3,7 @@ package com.hackaton.duma.dao;
 import com.hackaton.duma.hotornot.HotOrNotException;
 import com.hackaton.duma.index.IndexException;
 import com.hackaton.duma.model.Deputy;
+import com.hackaton.duma.model.Party;
 import org.apache.commons.dbcp.ConnectionFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
