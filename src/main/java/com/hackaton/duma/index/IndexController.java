@@ -45,7 +45,7 @@ public class IndexController {
     public String hotOrNotPOST(Model model, @PathVariable(value = "id") Integer id) {
 
         Deputy deputy = null;
-        Map<Integer,Integer> rateMap = null;
+        Map<String, Float> rateMap = null;
         try {
             deputy = deputyDAO.getDeputy(id);
             rateMap = deputyDAO.getTopicRate(id);

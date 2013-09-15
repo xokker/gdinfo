@@ -9,10 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,9 +62,26 @@ public class DeputyDAO {
             "from deputy_topic dt join deputy d on dt.deputy_id = d.api_id where d.deputy_id = ? " +
             "order by topic_id";
 
+    private static final String SELECT_ALL_DEPUTIES =
+            "select deputy_id, first_name, middle_name, last_name from deputy offset ? limit ?";
+
 
     @Resource(name = "connectionFactory")
     private ConnectionFactory connectionFactory;
+
+    public List<Deputy> getAllDeputies() {
+        return getDeputiesList(SELECT_ALL_DEPUTIES, 1000, 0, new RowMapper() {
+            @Override
+            public Deputy mapRow(ResultSet rs) throws SQLException {
+                Deputy deputy = new Deputy();
+                deputy.setId(rs.getInt(1));
+                deputy.setFirstName(rs.getString(2));
+                deputy.setMiddleName(rs.getString(3));
+                deputy.setLastName(rs.getString(4));
+                return deputy;
+            }
+        });
+    }
 
     private interface RowMapper {
         Deputy mapRow(ResultSet rs) throws SQLException;
