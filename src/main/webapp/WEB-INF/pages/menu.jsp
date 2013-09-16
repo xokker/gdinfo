@@ -27,7 +27,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="/gdinfo/">Депутаты</a></li>
                 <li><a href="/gdinfo/party">Партии</a></li>
-                <li class="active"><a href="/gdinfo/hotornot">Индекс доверия</a></li>
+                <li><a href="/gdinfo/hotornot">Индекс доверия</a></li>
             </ul>
 
             <!-- Яндекс поиск-->
