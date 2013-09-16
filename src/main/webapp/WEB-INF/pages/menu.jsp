@@ -25,7 +25,7 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/gdinfo/">Депутаты</a></li>
+                <li><a href="/gdinfo/list">Депутаты</a></li>
                 <li><a href="/gdinfo/party">Партии</a></li>
                 <li><a href="/gdinfo/hotornot">Индекс доверия</a></li>
             </ul>
