@@ -64,7 +64,7 @@ public class DeputyDAO {
             "order by topic_id";
 
     private static final String SELECT_ALL_DEPUTIES =
-            "select deputy_id, first_name, middle_name, last_name from deputy offset ? limit ?";
+            "select deputy_id, first_name, middle_name, last_name, small_photo_url from deputy offset ? limit ?";
 
 
     @Resource(name = "connectionFactory")
@@ -79,6 +79,8 @@ public class DeputyDAO {
                 deputy.setFirstName(rs.getString(2));
                 deputy.setMiddleName(rs.getString(3));
                 deputy.setLastName(rs.getString(4));
+                deputy.setSmallPhotoURL(rs.getString(5));
+                //logger.info("Big photoUrl:" + deputy.getSmallPhotoURL());
                 return deputy;
             }
         });
