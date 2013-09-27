@@ -53,13 +53,13 @@
             var url;
             $.ajax({
                 type: "GET",
-                url: "/gdinfo/hotornot/ajax.json",
+                url: "/hotornot/ajax.json",
                 success: function(result){
                     jsonMassive = result;
                     images = $(".img-thumbnail");
                     for(i=0; i<2; i++){
                         images.eq(i).attr("src",jsonMassive[i]["bigPhotoURL"]);
-                        $(".deputy-block").eq(i).children("a").eq(1).attr("href","/gdinfo/"+jsonMassive[i]["id"]);
+                        $(".deputy-block").eq(i).children("a").eq(1).attr("href","/"+jsonMassive[i]["id"]);
                         $(".deputy-block").eq(i).children("a").eq(1).text(jsonMassive[i]["firstName"] + " " + jsonMassive[i]["lastName"]);
                     }
                 },
@@ -70,9 +70,9 @@
 
                 index = $(this).parent().index();
                 if (index == 0) {
-                    url = "/gdinfo/hotornot/ajax.json?first="+jsonMassive[0]["id"]+"&second="+jsonMassive[1]["id"]+"&result=left";
+                    url = "/hotornot/ajax.json?first="+jsonMassive[0]["id"]+"&second="+jsonMassive[1]["id"]+"&result=left";
                 } else {
-                    url = "/gdinfo/hotornot/ajax.json?first="+jsonMassive[0]["id"]+"&second="+jsonMassive[1]["id"]+"&result=right";
+                    url = "/hotornot/ajax.json?first="+jsonMassive[0]["id"]+"&second="+jsonMassive[1]["id"]+"&result=right";
                 }
                 $.ajax({
                     type:"GET",
@@ -87,7 +87,7 @@
 
                             images.eq(i).attr("src",jsonMassive[i]["bigPhotoURL"]);
 
-                            depBlock.children("a").eq(1).attr("href","http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassive[i]["id"]);
+                            depBlock.children("a").eq(1).attr("href","http://hotduma.com/"+jsonMassive[i]["id"]);
                             depBlock.children("a").eq(1).text(jsonMassive[i]["firstName"] + " " + jsonMassive[i]["lastName"]);
                         }
                         deps.fadeIn();

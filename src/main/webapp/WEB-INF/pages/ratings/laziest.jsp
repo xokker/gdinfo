@@ -65,11 +65,11 @@
             var jsonMassiveLazy;
             $.ajax({
                 type:"GET",
-                url: "http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/laziest/ajax.json",
+                url: "http://hotduma.com/laziest/ajax.json",
                 success: function(result){
                     jsonMassiveLazy = result;
                     for(num;num<=numEnd;num++){
-                        $(".table").children("tbody").append("<tr><td><p>"+(num+1)+"</p></td><td><a href='http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassiveLazy[num]['id']+"'>"+jsonMassiveLazy[num]['lastName']+" "+jsonMassiveLazy[num]['firstName']+"</td><td><span class='label label-success'>"+jsonMassiveLazy[num]['lawCount']+"</span></td></tr>");
+                        $(".table").children("tbody").append("<tr><td><p>"+(num+1)+"</p></td><td><a href='http://hotduma.com/"+jsonMassiveLazy[num]['id']+"'>"+jsonMassiveLazy[num]['lastName']+" "+jsonMassiveLazy[num]['firstName']+"</td><td><span class='label label-success'>"+jsonMassiveLazy[num]['lawCount']+"</span></td></tr>");
                     }
                     numEnd=num+19;
                     console.log(numEnd);
@@ -79,7 +79,7 @@
 
             $(".btn").click(function(){
                 for(num;num<=numEnd;num++){
-                    $(".table").children("tbody").append("<tr><td><p>"+(num+1)+"</p></td><td><a href='http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/"+jsonMassiveLazy[num]['id']+"'>"+jsonMassiveLazy[num]['lastName']+" "+jsonMassiveLazy[num]['firstName']+"</td><td><span class='label label-success'>"+jsonMassiveLazy[num]['lawCount']+"</span></td></tr>");
+                    $(".table").children("tbody").append("<tr><td><p>"+(num+1)+"</p></td><td><a href='http://hotduma.com/"+jsonMassiveLazy[num]['id']+"'>"+jsonMassiveLazy[num]['lastName']+" "+jsonMassiveLazy[num]['firstName']+"</td><td><span class='label label-success'>"+jsonMassiveLazy[num]['lawCount']+"</span></td></tr>");
                 }
                 numEnd = num + 19;
             })

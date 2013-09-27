@@ -33,24 +33,24 @@
         <tbody>
         <tr>
             <td>
-                <a href="http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/party/1">
+                <a href="http://hotduma.com/party/1">
                     <img src="http://habrastorage.org/storage3/271/1d2/400/2711d2400bd20d27e5d89a4e9501f06b.jpg"/>
                 </a>
             </td>
             <td>
-                <a href="http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/party/3">
+                <a href="http://hotduma.com/party/3">
                     <img src="http://habrastorage.org/storage3/98f/3f9/129/98f3f91291e557ec7456a8bdf6e6ddb2.jpg"/>
                 </a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/party/2">
+                <a href="http://hotduma.com/party/2">
                     <img src="http://habrastorage.org/storage3/809/f4d/4ff/809f4d4ff55dd37ee9edd3c859bd2bdc.jpg"/>
                 </a>
             </td>
             <td>
-                <a href="http://ec2-54-202-33-121.us-west-2.compute.amazonaws.com/gdinfo/party/4">
+                <a href="http://hotduma.com/party/4">
                     <img src="http://habrastorage.org/storage3/58a/270/8df/58a2708df753a3b9ace85fd9269437ac.jpg"/>
                 </a>
             </td>
