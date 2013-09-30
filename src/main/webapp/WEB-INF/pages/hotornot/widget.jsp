@@ -101,7 +101,7 @@
 
 <div class="info">
     <div class="choice"><strong>${leftDeputy.lastName}</strong> или <strong>${rightDeputy.lastName}</strong></b>?</div>
-    <a class="results" href="/gdinfo/hotornot" target="_blank"></a>
+    <a class="results" href="/hotornot" target="_blank"></a>
 </div>
 </body>
 </html>
