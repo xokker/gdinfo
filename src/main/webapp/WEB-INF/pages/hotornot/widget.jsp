@@ -23,6 +23,9 @@
             margin-right: 6px;
         }
 
+	.pictures {
+	    width: 280px;
+	}
         .info {
             width: 100%;
             text-align: center;
@@ -91,6 +94,7 @@
     </script>
 </head>
 <body>
+<div class="pictures">
 <a class="depLink" data-id="${leftDeputy.id}" href="javascript:;" class="dep-left">
     <img src="${leftDeputy.bigPhotoURL}">
 </a>
@@ -98,6 +102,7 @@
 <a class="depLink" data-id="${rightDeputy.id}" href="javascript:;" class="dep-right">
     <img src="${rightDeputy.bigPhotoURL}">
 </a>
+</div>
 
 <div class="info">
     <div class="choice"><strong>${leftDeputy.lastName}</strong> или <strong>${rightDeputy.lastName}</strong></b>?</div>
