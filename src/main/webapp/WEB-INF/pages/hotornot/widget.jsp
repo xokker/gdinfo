@@ -65,7 +65,7 @@
                 else {
                     result = "right"
                 }
-                url = "/gdinfo/hotornot/ajax.json?first="+ids[0]+"&second="+ids[1]+"&result="+result;
+                url = "/hotornot/ajax.json?first="+ids[0]+"&second="+ids[1]+"&result="+result;
 
                 $.ajax({
                     type:"GET",
